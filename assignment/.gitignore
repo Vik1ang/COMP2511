@@ -1,0 +1,8 @@
+eclipse-formatter.xml
+.idea/
+__pycache__
+*.pyc
+*.class
+.venv/
+out/
+*.iml

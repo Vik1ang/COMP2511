@@ -1,0 +1,147 @@
+{
+  "satellites": [
+    {
+      "id": "SatelliteA",
+      "position": 50,
+      "velocity": 85,
+      "possibleConnections": [
+        "Device1",
+        "Device2",
+        "Device3",
+        "Device4",
+        "Device5",
+        "Device6",
+        "Device7",
+        "Device8",
+        "Device9",
+        "Device10"
+      ],
+      "type": "SovietSatellite",
+      "connections": [],
+      "height": 5838
+    }
+  ],
+  "currentTime": "00:00",
+  "devices": [
+    {
+      "isConnected": false,
+      "id": "Device1",
+      "position": 50,
+      "activationPeriods": [
+        {
+          "startTime": "00:00",
+          "endTime": "01:00"
+        }
+      ],
+      "type": "LaptopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device2",
+      "position": 51,
+      "activationPeriods": [
+        {
+          "startTime": "01:00",
+          "endTime": "02:00"
+        }
+      ],
+      "type": "LaptopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device3",
+      "position": 52,
+      "activationPeriods": [
+        {
+          "startTime": "02:00",
+          "endTime": "03:00"
+        }
+      ],
+      "type": "HandheldDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device4",
+      "position": 53,
+      "activationPeriods": [
+        {
+          "startTime": "03:00",
+          "endTime": "04:00"
+        }
+      ],
+      "type": "HandheldDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device5",
+      "position": 54,
+      "activationPeriods": [
+        {
+          "startTime": "04:00",
+          "endTime": "05:00"
+        }
+      ],
+      "type": "DesktopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device6",
+      "position": 55,
+      "activationPeriods": [
+        {
+          "startTime": "05:00",
+          "endTime": "06:00"
+        }
+      ],
+      "type": "DesktopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device7",
+      "position": 56,
+      "activationPeriods": [
+        {
+          "startTime": "06:00",
+          "endTime": "07:00"
+        }
+      ],
+      "type": "DesktopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device8",
+      "position": 57,
+      "activationPeriods": [
+        {
+          "startTime": "07:00",
+          "endTime": "08:00"
+        }
+      ],
+      "type": "DesktopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device9",
+      "position": 58,
+      "activationPeriods": [
+        {
+          "startTime": "08:00",
+          "endTime": "09:00"
+        }
+      ],
+      "type": "DesktopDevice"
+    },
+    {
+      "isConnected": false,
+      "id": "Device10",
+      "position": 59,
+      "activationPeriods": [
+        {
+          "startTime": "09:00",
+          "endTime": "10:00"
+        }
+      ],
+      "type": "LaptopDevice"
+    }
+  ]
+}

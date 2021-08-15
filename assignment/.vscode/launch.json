@@ -1,0 +1,16 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "cwd": "${workspaceRoot}",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Cli",
+            "request": "launch",
+            "mainClass": "unsw.blackout.Cli",
+            "projectName": "21T2-cs2511-assignment1_3895ac08"
+        }
+    ]
+}
