@@ -1,0 +1,40 @@
+diff --git a/tute08/src/fs/model/File.java b/tute08/src/fs/model/File.java
+index c9bd854..74a3fda 100644
+--- a/tute08/src/fs/model/File.java
++++ b/tute08/src/fs/model/File.java
+@@ -1,5 +1,21 @@
+ package fs.model;
+ 
+-public class File {
+-    
++import java.nio.file.Path;
++import java.nio.file.Paths;
++
++public class File {
++    private Path path;
++
++    public File(Path path) {
++        this.path = path;
++    }
++
+#    We are now able to 'remove' icon code from FilePathTreeItem
++    public String getIcon(boolean isExpanded) {
++        // would be quite easy to have many images for this file here
++        return "text-x-generic.png";
++    }
++
++    public long getFileSize() {
++        try {
++            return Files.size(path);
++        } catch (IOException e) {
+#    Exceptions could be handled here better (rethrown)
+#    but that's not the point of this exercise
++            e.printStackTrace();
++        }
++    }
++
++
++    public String getName() {
++        return Paths.get(getPath()).getFileName().toString();
++    }
+ }

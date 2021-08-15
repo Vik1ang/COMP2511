@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "fs.ui.App",
+            "vmArgs": "--module-path ./lib/symlink_javafx --add-modules javafx.controls,javafx.fxml -enableassertions"
+        }
+    ]
+
+}

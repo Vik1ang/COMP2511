@@ -1,0 +1,46 @@
+diff --git a/tute08/src/fs/ui/FilePathTreeItem.java b/tute08/src/fs/ui/FilePathTreeItem.java
+index 0187712..b2d6b7c 100644
+--- a/tute08/src/fs/ui/FilePathTreeItem.java
++++ b/tute08/src/fs/ui/FilePathTreeItem.java
+@@ -1,97 +1,47 @@
+ package fs.ui;
+
+ public class FilePathTreeItem extends TreeItem<String> {
+
+     @Override
+     public boolean isLeaf() {
+# cleanup abstraction
+-        return !(inode instanceof Directory);   
++        return !(inode instanceof Expandable);
+     }
+
+     public FilePathTreeItem(Inode inode) {
+         super(inode.getPath());
+         this.inode = inode;
+ 
+         this.setGraphic(new ImageView(new Image(
+             ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(false)))));
+         this.setValue(String.format("%s (%f KiB)", inode.getName(), inode.getFileSize() / 1024.0));
+
+# we can know do some simpler collapse/expanded events
+         addEventHandler(TreeItem.branchCollapsedEvent(), (ev) -> {
+             ImageView iv = (ImageView) getGraphic();
+             // in reality you would probably cache these images for performance reasons...
+             iv.setImage(new Image(ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(false))));
+         });
+
+# no need for every event to have this expandable
++        if (inode instanceof Expandable) {
+             addEventHandler(TreeItem.branchExpandedEvent(), (ev) -> {
+                 ImageView iv = (ImageView) getGraphic();
+                 // in reality you would probably cache these images for performance reasons...
+                 iv.setImage(new Image(ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(true))));
+
++                // after expansion we may need to render some new cells
++                for (Inode innerInode : ((Expandable)inode).expand()) {
++                    getChildren().add(new FilePathTreeItem(innerInode));
++                }
+             });
++        }
+     }
+ }

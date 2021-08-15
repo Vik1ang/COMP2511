@@ -1,0 +1,35 @@
+diff --git a/tute08/src/fs/ui/FilePathTreeItem.java b/tute08/src/fs/ui/FilePathTreeItem.java
+index 0187712..b2d6b7c 100644
+--- a/tute08/src/fs/ui/FilePathTreeItem.java
++++ b/tute08/src/fs/ui/FilePathTreeItem.java
+@@ -1,97 +1,47 @@
+ package fs.ui;
+
+# Our goal is to remove anything related to images/icons/name since we know that we'll store that through some object
+
+ public class FilePathTreeItem extends TreeItem<String> {
+-    public static Image folderCollapseImage = new Image(
+-            ClassLoader.getSystemResourceAsStream("fs/resources/folder.png"));
+-    public static Image folderExpandImage = new Image(
+-            ClassLoader.getSystemResourceAsStream("fs/resources/folder-open.png"));
+-    public static Image fileImage = new Image(ClassLoader.getSystemResourceAsStream("fs/resources/text-x-generic.png"));
+# No need for images
+
+# we won't need fullpath/isDirectory either we'll just use some sort of instanceof probably for this
+# but we want to generalise what a 'leaf' represents, in this case if the object is 'expandable' that's probably
+# what we are looking for...
+-    public String getFullPath() {
+-        return (this.fullPath);
+-    }
+-
+-    private boolean isDirectory;
+-
+-    public boolean isDirectory() {
+-        return this.isDirectory;
+-    }
+ 
+-    @Override
+-    public boolean isLeaf() {
+-        return !isDirectory();
+-    }
+}

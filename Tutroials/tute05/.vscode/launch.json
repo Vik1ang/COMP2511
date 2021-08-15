@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "unsw.quaint.Main",
+            "vmArgs": "--module-path ./lib/symlink_javafx --add-modules javafx.controls,javafx.fxml,javafx.media -enableassertions"
+        }
+    ]
+}

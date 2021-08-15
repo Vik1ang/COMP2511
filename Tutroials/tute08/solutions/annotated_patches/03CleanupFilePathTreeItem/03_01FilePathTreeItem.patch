@@ -1,0 +1,127 @@
+diff --git a/tute08/src/fs/ui/FilePathTreeItem.java b/tute08/src/fs/ui/FilePathTreeItem.java
+index 0187712..b2d6b7c 100644
+--- a/tute08/src/fs/ui/FilePathTreeItem.java
++++ b/tute08/src/fs/ui/FilePathTreeItem.java
+@@ -1,97 +1,47 @@
+ package fs.ui;
+ 
+-import java.io.File;
+-import java.io.IOException;
+-import java.nio.file.DirectoryStream;
+-import java.nio.file.Files;
+-import java.nio.file.Path;
+-import java.nio.file.Paths;
+-import java.nio.file.attribute.BasicFileAttributes;
++import fs.model.Expandable;
+ import javafx.scene.control.TreeItem;
+ import javafx.scene.image.Image;
+ import javafx.scene.image.ImageView;
+
++/**
++ * TreeItem's are the controller to the view TreeCell.
++ */
+ public class FilePathTreeItem extends TreeItem<String> {
+-    public static Image folderCollapseImage = new Image(
+-            ClassLoader.getSystemResourceAsStream("fs/resources/folder.png"));
+-    public static Image folderExpandImage = new Image(
+-            ClassLoader.getSystemResourceAsStream("fs/resources/folder-open.png"));
+-    public static Image fileImage = new Image(ClassLoader.getSystemResourceAsStream("fs/resources/text-x-generic.png"));
++    private Inode inode;
+
+     @Override
+     public boolean isLeaf() {
+# we'll make this nicer in a second (a little bit)
+-        return !isDirectory();
++        return !(inode instanceof Directory);
+     }
+
+-    public FilePathTreeItem(Path file) {
++    public FilePathTreeItem(Inode inode) {
+-        super(file.toString());
+-        this.fullPath = file.toString();
++        super(inode.getPath());
++        this.inode = inode;
+ 
++        this.setGraphic(new ImageView(new Image(
++            ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(false)))));
++        this.setValue(String.format("%s (%f KiB)", inode.getName(), inode.getFileSize() / 1024.0));
+
+# we can know do some simpler collapse/expanded events
+# all of these events here are observing a specific action such as a branch collapsing/expanding
+# or a child updating their size (which would therefore impact our size)
++        addEventHandler(TreeItem.branchCollapsedEvent(), (ev) -> {
++            ImageView iv = (ImageView) getGraphic();
++            // in reality you would probably cache these images for performance reasons...
++            iv.setImage(new Image(ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(false))));
++        });
+
+# you could represent this slightly nicer but eh it's just 2 lines it's fine.
++        addEventHandler(TreeItem.branchExpandedEvent(), (ev) -> {
++            ImageView iv = (ImageView) getGraphic();
++            // in reality you would probably cache these images for performance reasons...
++            iv.setImage(new Image(ClassLoader.getSystemResourceAsStream("fs/resources/" + inode.getIcon(true))));
+# mention that we'll want to extend from here to handle lazy loading of folders...
++        });
+
+# regenerate file sizes every time a child changes
+# right now we aren't allowing you to expand the folders yet but we'll add this pre-emptively
+# again duplication that could be abstracted into some sort of function but it's fine.
++        addEventHandler(TreeItem.childrenModificationEvent(), (ev) -> {
++           this.setValue(String.format("%s (%f KiB)", inode.getName(), inode.getFileSize() / 1024.0));
++        });
+ 
+# just basically remove all the code in this file...
+# this will break expanding folders but we'll fix that in a moment again.
+-        // test if this is a directory and set the icon
+-        if (Files.isDirectory(file)) {
+-            this.isDirectory = true;
+-            this.setGraphic(new ImageView(folderCollapseImage));
+-        } else {
+-            this.isDirectory = false;
+-            this.setGraphic(new ImageView(fileImage));
+-        }
+-        // set the value
+-        if (!fullPath.endsWith(File.separator)) {
+-            // set the value (which is what is displayed in the tree)
+-            String value = file.toString();
+-            int indexOf = value.lastIndexOf(File.separator);
+-            if (indexOf > 0) {
+-                this.setValue(value.substring(indexOf + 1));
+-            } else {
+-                this.setValue(value);
+-            }
+-        addEventHandler(TreeItem.<String>branchExpandedEvent(), (ev) -> {
+-            FilePathTreeItem source = (FilePathTreeItem) ev.getSource();
+-            if (source.isDirectory() && source.isExpanded()) {
+-                ImageView iv = (ImageView) source.getGraphic();
+-                iv.setImage(folderExpandImage);
+-            }
+-            try {
+-                if (source.getChildren().isEmpty()) {
+# We are keeping this code here since we'll need to use it later maybe... just comment it out
+//                   Path path = Paths.get(source.getFullPath());
+//                   BasicFileAttributes attribs = Files.readAttributes(path, BasicFileAttributes.class);
+//                   if (attribs.isDirectory()) {
+//                       DirectoryStream<Path> dir = Files.newDirectoryStream(path);
+//                       for (Path innerFile : dir) {
+//                           FilePathTreeItem treeNode = new FilePathTreeItem(innerFile);
+//                          source.getChildren().add(treeNode);
+//                      }
+//                   }
+-                } else {
+-                    // if you want to implement rescanning a directory for changes this would be the
+-                    // place to do it
+-                }
+-            } catch (IOException x) {
+-                x.printStackTrace();
+-            }
+-        });
+-
+-        this.addEventHandler(TreeItem.<String>branchCollapsedEvent(), (ev) -> {
+-            FilePathTreeItem source = (FilePathTreeItem) ev.getSource();
+-            if (source.isDirectory() && !source.isExpanded()) {
+-                ImageView iv = (ImageView) source.getGraphic();
+-                iv.setImage(folderCollapseImage);
+-            }
+-        });
+ }

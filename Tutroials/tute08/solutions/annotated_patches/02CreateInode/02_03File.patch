@@ -1,0 +1,24 @@
+diff --git a/tute08/src/fs/model/File.java b/tute08/src/fs/model/File.java
+index c9bd854..74a3fda 100644
+--- a/tute08/src/fs/model/File.java
++++ b/tute08/src/fs/model/File.java
+@@ -1,5 +1,21 @@
+ package fs.model;
+ 
+-public class File {
+public class File extends Inode {
+    public File(Path path) {
++        super(path);
+     }
+
++    @Override
+     public String getIcon(boolean isExpanded) {
+         // would be quite easy to have many images for this file here
+         return "text-x-generic.png";
+     }
+
++    @Override
+     public String getName() {
+         return Paths.get(getPath()).getFileName().toString();
+     }
+ }

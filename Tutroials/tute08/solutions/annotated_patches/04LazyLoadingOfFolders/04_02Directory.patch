@@ -1,0 +1,37 @@
+diff --git a/tute08/src/fs/model/Directory.java b/tute08/src/fs/model/Directory.java
+index 1e286df..39a2386 100644
+--- a/tute08/src/fs/model/Directory.java
++++ b/tute08/src/fs/model/Directory.java
+@@ -1,5 +1,67 @@
+ package fs.model;
+ 
+-public class Directory extends Inode {
++public class Directory extends Inode implements Expandable {
++
+# pretty much copy + paste from the old code and change variables
+# ignore exceptions, not the point of this exercise.
++    public List<Inode> expand() {
++        // an extension on this could do dynamic updates everytime you expand it
++        if (innerInodes.size() == 0) {
++            Path path = Paths.get(getPath());
++            BasicFileAttributes attribs;
++            try {
++                attribs = Files.readAttributes(path, BasicFileAttributes.class);
++                if (attribs.isDirectory()) {
++                    DirectoryStream<Path> dir = Files.newDirectoryStream(path);
++                    for (Path innerFile : dir) {
++                        if (Files.isDirectory(innerFile)) {
++                            innerInodes.add(new Directory(innerFile));
++                        } else {
++                            innerInodes.add(new File(innerFile));
++                        }
++                    }
++                }
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++            return innerInodes;
++        }
++        return Arrays.<Inode>asList();
++    }
+ }
