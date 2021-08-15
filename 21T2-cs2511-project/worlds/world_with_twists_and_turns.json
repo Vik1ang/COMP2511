@@ -1,0 +1,29 @@
+{
+  "width": 8,
+  "height": 14,
+  "rare_items": ["TheOneRing", "AndurilFlameOfTheWest", "TreeStump"],
+  "goal-condition": [
+    {"goal": "experience", "quantity": 123456},
+    {"goal":  "gold", "quantity":  700},
+    {"goal":  "cycle", "quantity":  50},
+    {"goal":  "boss", "quantity":  1}
+  ],
+  "entities": [
+    {"x": 0, "y": 0, "type": "HeroCastleBuilding"}
+  ],
+  "equipped entities": [],
+  "path": {
+    "type": "path_tile",
+    "x": 0, "y": 0,
+    "path": [
+      "RIGHT", "RIGHT", "DOWN", "RIGHT", "RIGHT", "UP", "RIGHT", "RIGHT", "RIGHT",
+      "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN",
+      "LEFT", "LEFT", "LEFT", "UP", "UP", "RIGHT",
+      "UP", "UP", "UP", "UP", "LEFT", "LEFT", "LEFT",
+      "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN",
+      "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "DOWN", "DOWN",
+      "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT",
+      "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP"
+    ]
+  }
+}

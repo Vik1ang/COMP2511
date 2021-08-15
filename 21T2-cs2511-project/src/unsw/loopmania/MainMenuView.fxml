@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+
+<!-- vertically stacked label and button -->
+
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" styleClass="main_anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unsw.loopmania.MainMenuController">
+    <stylesheets>
+        <URL value="@application.css" />
+    </stylesheets>
+    <VBox alignment="CENTER" layoutX="75.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="450.0" spacing="40.0">
+        <Label style="-fx-effect: dropshadow( one-pass-box , #d29629 , 18 , 0.0 , 2 , 0 )" text="Loop Mania" textFill="goldenrod">
+            <font>
+                <Font name="Snap ITC" size="60.0" />
+            </font>
+        </Label>
+        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="474.0">
+            <!-- clicking button should start the game -->
+            <Button alignment="CENTER" onAction="#startNewGame" prefHeight="50.0" prefWidth="199.0" styleClass="my_button_2" text="New Game">
+                <font>
+                    <Font name="Snap ITC" size="15.0" />
+                </font>
+            </Button>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <!--  clicking the button should start the game with game state he wants          -->
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadGame" prefHeight="65.0" prefWidth="186.0" styleClass="my_button_2" text="Load Game">
+                <font>
+                    <Font name="Snap ITC" size="15.0" />
+                </font>
+            </Button>
+        </HBox>
+        <!-- difficulty button       -->
+        <MenuButton fx:id="difficultyButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="262.0" styleClass="my_button" text="      Difficulty(easy by Default)" textAlignment="CENTER" textFill="#d9ff00">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#switchDifficultyStandard" text="Standard" />
+                <MenuItem mnemonicParsing="false" onAction="#switchDifficultyBerserk" text="Berserker" />
+                <MenuItem mnemonicParsing="false" onAction="#switchDifficultySurvival" text="Survival" />
+                <MenuItem mnemonicParsing="false" onAction="#switchDifficultyConfusing" text="Confusing" />
+            </items>
+         <font>
+            <Font name="Snap ITC" size="12.0" />
+         </font>
+        </MenuButton>
+        <!-- speed button       -->
+        <MenuButton fx:id="speedButton" alignment="CENTER" mnemonicParsing="false" prefHeight="44.0" prefWidth="260.0" styleClass="my_button" text="    GameSpeed(1.0)" textFill="#e3ef06">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#switchSpeedSlow" text="1.0" />
+                <MenuItem mnemonicParsing="false" onAction="#switchSpeedMedium" text="1.5" />
+                <MenuItem mnemonicParsing="false" onAction="#switchSpeedHigh" text="2.0" />
+            </items>
+         <font>
+            <Font name="Snap ITC" size="14.0" />
+         </font>
+        </MenuButton>
+      <Button style="-fx-font-family: 'Snap ITC' " fx:id="helpMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openHelpMenu" prefHeight="42.0" prefWidth="260.0" styleClass="my_button" text="Help" textFill="#c1ff06">
+    </Button>
+      <MediaView fx:id="mediaView" fitHeight="100.0" fitWidth="100.0" />
+
+    </VBox>
+    <padding>
+        <Insets bottom="200.0" left="200.0" right="200.0" top="200.0" />
+    </padding>
+</AnchorPane>

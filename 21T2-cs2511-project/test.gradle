@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'application'
+    id 'jacoco'
+}
+
+dependencies {
+    implementation files('lib/json.jar')
+    implementation files('lib/javatuples-1.2.jar')
+    implementation files('lib/LibFX-0.3.0.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.base.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.controls.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.fxml.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.graphics.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.swt.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.media.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.swing.jar')
+    implementation files('/import/ravel/3/cs2511/javafx-sdk-11.0.2/lib/javafx.web.jar')
+    testImplementation files('lib/junit-platform-console-standalone-1.7.0-M1.jar')
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+    ignoreFailures = true
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'unsw.loopmania'
+
+apply plugin: 'java'
+
+sourceSets.test.java.srcDirs = ['src']
+sourceSets.test.java.excludes = ['unsw/loopmania/*']
+sourceSets.main.java.srcDirs = ['src']
+sourceSets.main.java.excludes = ['test/*']

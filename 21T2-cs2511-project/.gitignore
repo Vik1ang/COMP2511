@@ -1,0 +1,15 @@
+*.class
+*.log
+hs_err_pid*
+/bin/
+/lib/
+/build/
+/.gradle/
+.idea
+*.iml
+.gradle
+/gradle
+gradlew
+gradlew.bat
+/src/myTest/
+out/

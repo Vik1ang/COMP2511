@@ -1,0 +1,106 @@
+.main_anchor {
+    -fx-background-image:url('../../images/loophero.png');
+    -fx-background-size: stretch;
+}
+
+.anchor_dead {
+    -fx-background-image:url('../../images/LichCloseup.png');
+    -fx-background-size: cover;
+}
+
+.my_button {
+    -fx-font-family: 'Snap ITC';
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/menu_button.png');
+    -fx-background-size: stretch;
+}
+
+.my_button_2 {
+    -fx-font-family: "Snap ITC";
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/menu_button2.png');
+    -fx-background-size: 100%,100%;
+}
+
+.my_button_3 {
+    -fx-font-family: "Snap ITC";
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/menu_button3.png');
+    -fx-background-size: stretch;
+}
+
+.my_button_4 {
+    -fx-font-family: "Snap ITC";
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/menu_button4.png');
+    -fx-background-size: stretch;
+}
+
+.my_button_5 {
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/menu_button5.png');
+    -fx-background-size: stretch;
+}
+
+.my_border2 {
+    -fx-background-color: transparent;
+    -fx-background-image:url('../../images/border2.png');
+    -fx-background-size: stretch;
+}
+
+.store_background {
+    -fx-background-image: url('../../images/store_border.png');
+    -fx-background-size: stretch;
+}
+
+.informationBackground {
+    -fx-opacity: 0.7;
+    -fx-background-color: #f1ebcf;
+    -fx-background-size: cover;
+}
+
+.anchor_setting {
+    -fx-background-image: url('../../images/settings_background.png');
+    -fx-background-size: cover;
+    -fx-fit-to-height: 600px;
+    -fx-fit-to-width: 600px;
+}
+
+.anchor_loopmania_background {
+    -fx-background-image:url('../../images/brown.jpg');
+    -fx-background-size: cover;
+}
+
+.continue {
+    -fx-background-image:url('../../images/grass.png');
+    -fx-background-size: cover;
+}
+
+.store {
+    -fx-background-image:url('../../images/castle.jpg');
+    -fx-background-size: cover;
+}
+
+.white {
+    -fx-background-color: white;
+    -fx-background-size: cover;
+}
+
+.brown {
+    -fx-background-color: #79550d;
+    -fx-background-size: cover;
+}
+.white_trans {
+    -fx-background-color:white;
+    -fx-background-size: cover;
+    -fx-opacity: 0.7;
+}
+
+.my_font {
+    -fx-font-family: "Snap ITC";
+    -fx-font-size: 15;
+}
+@font-face {
+    src: url('../../../fonts/Snap_ITC.ttf');
+}
+

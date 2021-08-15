@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- vertically stacked label and button -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="400" styleClass="anchor_dead" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unsw.loopmania.GameEndController">
+	<stylesheets>
+		<URL value="@application.css" />
+	</stylesheets>
+	<padding>
+		<Insets bottom="200.0" left="200.0" right="200.0" top="200.0" />
+	</padding>
+	<VBox alignment="CENTER" layoutX="1.0" layoutY="1.0" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="200.0" prefWidth="400.0" spacing="40.0">
+		<Label fx:id="gameEndLabel" style="-fx-effect: dropshadow( one-pass-box , #0347f3 , 18 , 0.0 , 2 , 0 )" text="You Lose!" wrapText="true">
+			<font>
+				<Font name="Snap ITC" size="35.0" />
+			</font>
+		</Label>
+		<!-- clicking button should start the game -->
+		<Button fx:id="finishGameButton" onAction="#endGame" prefHeight="50.0" prefWidth="200.0" styleClass="my_button_3" text="I will come back!" textFill="aliceblue">
+			<font>
+				<Font name="Snap ITC" size="15.0" />
+			</font>
+		</Button>
+	</VBox>
+</AnchorPane>

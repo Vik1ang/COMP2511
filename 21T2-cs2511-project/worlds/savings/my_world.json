@@ -1,0 +1,49 @@
+{
+    "path": {
+        "path": [
+            "RIGHT", "RIGHT", "DOWN", "RIGHT", "RIGHT", "UP", "RIGHT", "RIGHT", "RIGHT", "DOWN", "DOWN", "DOWN", "DOWN",
+            "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "LEFT", "LEFT", "LEFT", "UP", "UP", "RIGHT", "UP", "UP", "UP", "UP",
+            "LEFT", "LEFT", "LEFT", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "DOWN", "RIGHT", "RIGHT",
+            "RIGHT", "RIGHT", "RIGHT", "DOWN", "DOWN", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "LEFT", "UP",
+            "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP", "UP"
+        ],
+        "x": 0,
+        "y": 0,
+        "type": "path_tile"
+    },
+    "entities": [
+        {"x": 0, "y": 0, "type": "HeroCastleBuilding"}, {"x": 0, "y": 0, "type": "TowerCard"},
+        {"x": 1, "y": 0, "type": "BarracksCard"}, {"x": 2, "y": 0, "type": "TrapCard"},
+        {"x": 3, "y": 0, "type": "TrapCard"}, {"x": 4, "y": 0, "type": "TowerCard"},
+        {"x": 5, "y": 0, "type": "VampireCastleCard"}, {"x": 6, "y": 0, "type": "TowerCard"},
+        {"x": 7, "y": 0, "type": "ZombiePitCard"}, {"equipped": false, "x": 0, "y": 0, "type": "TreeStump"},
+        {"equipped": false, "x": 1, "y": 0, "type": "Sword"}, {"equipped": false, "x": 2, "y": 0, "type": "TheOneRing"},
+        {"equipped": false, "x": 3, "y": 0, "type": "TreeStump"},
+        {"equipped": false, "x": 0, "y": 1, "type": "AndurilFlameOfTheWest"},
+        {"equipped": false, "x": 1, "y": 1, "type": "TreeStump"},
+        {"equipped": false, "x": 2, "y": 1, "type": "DoggieCoin"},
+        {"equipped": false, "x": 3, "y": 1, "type": "TreeStump"},
+        {"equipped": false, "x": 0, "y": 2, "type": "TreeStump"}, {"equipped": false, "x": 1, "y": 2, "type": "Shield"},
+        {"equipped": false, "x": 2, "y": 2, "type": "TheOneRing"}, {"equipped": false, "x": 3, "y": 2, "type": "Sword"},
+        {"equipped": false, "x": 0, "y": 3, "type": "TreeStump"},
+        {"equipped": false, "x": 1, "y": 3, "type": "AndurilFlameOfTheWest"},
+        {"equipped": true, "x": 1, "y": 0, "type": "Helmet"}, {"equipped": true, "x": 2, "y": 1, "type": "Shield"},
+        {"equipped": true, "x": 0, "y": 1, "type": "Sword"}, {"x": 3, "y": 3, "type": "Slug"},
+        {"x": 0, "y": 10, "type": "Slug"}
+    ],
+    "character_info": {
+        "gold_number": 82,
+        "allies_number": 0,
+        "potion_number": 6,
+        "cycle_complete": 6,
+        "health": 100,
+        "experience": 14050
+    },
+    "width": 8,
+    "goal-condition": [
+        {"goal": "experience", "quantity": 123456}, {"goal": "gold", "quantity": 100}, {"goal": "cycle", "quantity": 20}
+    ],
+    "game_mode": "",
+    "rare_items": ["TheOneRing", "AndurilFlameOfTheWest", "TreeStump"],
+    "height": 14
+}

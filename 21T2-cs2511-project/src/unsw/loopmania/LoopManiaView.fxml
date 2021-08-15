@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- anchorPaneRoot is the background of the main game -->
+
+<AnchorPane fx:id="anchorPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="650.0" prefWidth="750.0" styleClass="anchor_loopmania_background" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+	<stylesheets>
+		<URL value="@application.css" />
+	</stylesheets>
+	<!--	<ImageView cache="true" fitHeight="560.0" fitWidth="270.0" layoutX="450.0" layoutY="50.0" pickOnBounds="true">-->
+	<!--		<Image url="@../../images/store_border.png" />-->
+	<!--	</ImageView>-->
+	<HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="730.0" spacing="5.0" style="-fx-border-color: black" styleClass="informationBackground">
+		<MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="my_button" text="Menu">
+			<items>
+				<!-- clicking this button returns the human player to the settings menu -->
+				<MenuItem mnemonicParsing="false" onAction="#switchToSettings" text="Settings" />
+				<MenuItem mnemonicParsing="false" onAction="#openTheHelpSettings" text="Help" />
+				<MenuItem mnemonicParsing="false" onAction="#saveTheGame" text="Save game" />
+			</items>
+			<font>
+				<Font name="System Bold" size="12.0" />
+			</font>
+		</MenuButton>
+		<!--        heart image-->
+		<ImageView id="heart" fitHeight="20.0" fitWidth="20.0">
+			<Image url="@../../images/heart.png" />
+		</ImageView>
+		<!--        heart progress bar-->
+		<ProgressBar fx:id="healthBar" prefHeight="20.0" prefWidth="100.0" progress="100.0" />
+		<!--      experience num label-->
+		<Label alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="50.0" text="Exp:" textFill="#418077">
+			<font>
+				<Font name="System Bold" size="18.0" />
+			</font>
+		</Label>
+		<!-- the number of experience            -->
+		<Label fx:id="experienceNum" alignment="TOP_CENTER" prefHeight="20.0" prefWidth="80.0" text="0" textFill="#418077">
+			<font>
+				<Font name="System Bold" size="18.0" />
+			</font>
+		</Label>
+		<!-- gold image -->
+		<ImageView id="gold" fitHeight="20.0" fitWidth="20.0">
+			<Image url="@../../images/gold_pile.png" />
+		</ImageView>
+		<!--  the number of gold      -->
+		<Label fx:id="goldNum" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" text="0" textFill="YELLOWGREEN">
+			<font>
+				<Font name="System Bold" size="18.0" />
+			</font>
+		</Label>
+		<!-- Potion image -->
+		<ImageView id="potion" fitHeight="20.0" fitWidth="20.0">
+			<Image url="@../../images/brilliant_blue_new.png" />
+		</ImageView>
+		<!--  the number of potion   -->
+		<Label fx:id="potionNum" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" text="0" textFill="#242180">
+			<font>
+				<Font name="System Bold" size="18.0" />
+			</font>
+		</Label>
+		<!--	Doggie coin Price	-->
+		<ImageView id="gold" fitHeight="18.0" fitWidth="18.0" layoutY="6">
+			<Image url="@../../images/doggiecoin.png" />
+		</ImageView>
+		<Label text="Price" />
+		<Label fx:id="doggieCoinPrice" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" text="Price: 0" textFill="#242180">
+			<font>
+				<Font name="System Bold" size="18.0" />
+			</font>
+		</Label>
+		<!--      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="0.001" prefWidth="0.001" text="Button" />-->
+		<!--		<Button onAction="#switchToSettings" prefWidth="96.0" text="Settings" />-->
+		<!--      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openTheHelpSettings" prefWidth="80.0" text="Help" />-->
+	</HBox>
+
+	<!-- VBOX is to make it able to add things down the hbox -->
+	<VBox layoutX="50.0" layoutY="70.0">
+		<!-- HBox is used to stack items horizontally left to right -->
+		<HBox>
+			<!-- VBox is used to stack items vertically top to bottom -->
+			<VBox>
+				<!-- squares contains the path, buildings, character, and enemies -->
+				<GridPane fx:id="squares">
+					<columnConstraints>
+						<ColumnConstraints />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints />
+					</rowConstraints>
+				</GridPane>
+				<!-- this BorderPane contains the ground under the cards and the cards -->
+				<BorderPane>
+					<bottom>
+						<!-- cards GridPane holds the cards which can be used on the map -->
+						<GridPane fx:id="cards">
+							<columnConstraints>
+								<ColumnConstraints />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints />
+							</rowConstraints>
+						</GridPane>
+					</bottom>
+				</BorderPane>
+			</VBox>
+			<Pane prefHeight="20.0" prefWidth="20.0" />
+			<VBox>
+				<GridPane alignment="CENTER" styleClass="informationBackground">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<Label alignment="CENTER" text="Goals:" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+						<font>
+							<Font name="Snap ITC" size="20" />
+						</font>
+					</Label>
+					<Label fx:id="goldGoalText" text=" " textFill="crimson" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="1">
+						<font>
+							<Font name="Snap ITC" size="10" />
+						</font>
+					</Label>
+					<Label fx:id="expGoalText" text=" " textFill="purple" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+						<font>
+							<Font name="Snap ITC" size="10" />
+						</font>
+					</Label>
+					<Label fx:id="cycleGoalText" text=" " textFill="darkblue" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="3">
+						<font>
+							<Font name="Snap ITC" size="10" />
+						</font>
+					</Label>
+				</GridPane>
+				<!-- equippedItems contains the equipment equipped by the character in special slots -->
+				<GridPane fx:id="equippedItems">
+					<columnConstraints>
+						<ColumnConstraints />
+						<ColumnConstraints />
+						<ColumnConstraints />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints />
+						<RowConstraints />
+					</rowConstraints>
+					<!-- swordCell is the cell where a sword intended to be equipped will be dragged by the human player -->
+					<ImageView id="helmetCell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+						<Image url="@../../images/helmet_slot.png" />
+					</ImageView>
+					<!-- swordCell is the cell where a sword intended to be equipped will be dragged by the human player -->
+					<ImageView id="swordCell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+						<Image url="@../../images/sword_unequipped.png" />
+					</ImageView>
+					<!-- blankCell is an empty cell -->
+					<ImageView id="blankCell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+						<Image url="@../../images/empty_slot.png" />
+					</ImageView>
+					<!-- shieldCell is the cell where a shield intended to be equipped will be dragged by the human player -->
+					<ImageView id="shieldCell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+						<Image url="@../../images/shield_unequipped.png" />
+					</ImageView>
+				</GridPane>
+				<Pane prefHeight="50.0" prefWidth="10.0" />
+				<!-- unequippedInventory is for unequipped items, which can be dragged into the equipped inventory -->
+				<GridPane fx:id="unequippedInventory">
+					<columnConstraints>
+						<ColumnConstraints />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints />
+					</rowConstraints>
+
+				</GridPane>
+				<Pane prefHeight="50.0" prefWidth="10.0" />
+				<GridPane fx:id="alliesGrid">
+					<ImageView visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+						<Image url="@../../images/deep_elf_master_archer.png" />
+					</ImageView>
+					<ImageView visible="false" GridPane.columnIndex="1" GridPane.rowIndex="0">
+						<Image url="@../../images/deep_elf_master_archer.png" />
+					</ImageView>
+					<ImageView visible="false" GridPane.columnIndex="2" GridPane.rowIndex="0">
+						<Image url="@../../images/deep_elf_master_archer.png" />
+					</ImageView>
+					<ImageView visible="false" GridPane.columnIndex="3" GridPane.rowIndex="0">
+						<Image url="@../../images/deep_elf_master_archer.png" />
+					</ImageView>
+					<columnConstraints>
+						<ColumnConstraints />
+						<ColumnConstraints />
+						<ColumnConstraints />
+						<ColumnConstraints />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints />
+					</rowConstraints>
+				</GridPane>
+			</VBox>
+		</HBox>
+	</VBox>
+	<AnchorPane layoutX="450.0" layoutY="40.0" prefHeight="500.0" prefWidth="280.0" styleClass="store_background">
+		<VBox fx:id="storeWindow" alignment="CENTER" layoutX="20.0" maxHeight="-Infinity" maxWidth="-Infinity"
+			  minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="240.0">
+			<AnchorPane prefHeight="15.0" prefWidth="200.0"/>
+			<Button fx:id="nextRoundButton" onAction="#continueNextRound" prefHeight="50" prefWidth="193.0"
+					style=" -fx-text-fill:#000000; -fx-min-height: 30; -fx-min-width: 80;" styleClass="my_button_5"
+					text="continueNextRound">
+				<font>
+					<Font name="Snap ITC" size="10"/>
+				</font>
+			</Button>
+			<Pane prefHeight="10.0" prefWidth="10.0"/>
+			<Label alignment="CENTER" prefHeight="50" prefWidth="200" styleClass="store">
+				<font>
+					<Font name="Snap ITC" size="20"/>
+				</font>
+			</Label>
+			<!-- it's the store page    -->
+			<GridPane id="storeWindow" alignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity"
+					  minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="white" vgap="10">
+				<columnConstraints>
+					<ColumnConstraints/>
+					<ColumnConstraints/>
+				</columnConstraints>
+				<rowConstraints>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+					<RowConstraints/>
+				</rowConstraints>
+				<!-- swordCell is the cell where a sword intended to be equipped will be dragged by the human player -->
+				<!-- swordCell is the cell where a sword intended to be equipped will be dragged by the human player -->
+				<Label id="Items" alignment="CENTER" prefHeight="20" prefWidth="40" styleClass="name" text="Items">
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="Golds" alignment="CENTER" prefHeight="20" prefWidth="40" styleClass="name" text="Gold"
+					   GridPane.columnIndex="1">
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="armourAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="20"
+					   GridPane.columnIndex="1" GridPane.rowIndex="1">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="armour" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="helmetAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="5"
+					   GridPane.columnIndex="1" GridPane.rowIndex="2">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="helmet" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="shieldAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="10"
+					   GridPane.columnIndex="1" GridPane.rowIndex="3">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="shield" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="staffAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="15"
+					   GridPane.columnIndex="1" GridPane.rowIndex="4">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="staff" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="stakeAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="10"
+					   GridPane.columnIndex="1" GridPane.rowIndex="5">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="stake" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="swordAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="15"
+					   GridPane.columnIndex="1" GridPane.rowIndex="6">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="sword" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<Label id="potionAccount" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="5"
+					   GridPane.columnIndex="1" GridPane.rowIndex="7">
+					<contextMenu>
+						<ContextMenu>
+							<items>
+								<MenuItem id="potion" mnemonicParsing="false" onAction="#buyItemRequest" text="Buy"/>
+							</items>
+						</ContextMenu>
+					</contextMenu>
+					<font>
+						<Font name="Snap ITC" size="12"/>
+					</font>
+				</Label>
+				<ImageView id="buyArmour" GridPane.rowIndex="1">
+					<Image url="@../../images/armour.png"/>
+				</ImageView>
+				<ImageView id="buyHelmet" GridPane.rowIndex="2">
+					<Image url="@../../images/helmet.png"/>
+				</ImageView>
+				<ImageView id="buyShield" GridPane.rowIndex="3">
+					<Image url="@../../images/shield.png"/>
+				</ImageView>
+				<ImageView id="buyStaff" GridPane.rowIndex="4">
+					<Image url="@../../images/staff.png"/>
+				</ImageView>
+				<ImageView id="buyStake" GridPane.rowIndex="5">
+					<Image url="@../../images/stake.png"/>
+				</ImageView>
+				<ImageView id="buySword" GridPane.rowIndex="6">
+					<Image url="@../../images/basic_sword.png"/>
+				</ImageView>
+				<ImageView id="buyPotion" GridPane.rowIndex="7">
+					<Image url="@../../images/brilliant_blue_new.png"/>
+				</ImageView>
+			</GridPane>
+			<Label fx:id="storeReminder" alignment="CENTER" prefHeight="80.0" prefWidth="199.0"
+				   style=" -fx-text-fill:#f3f3f3;" styleClass="brown" text="Welcome to Store!" wrapText="true">
+				<font>
+					<Font name="Snap ITC" size="15"/>
+				</font>
+			</Label>
+			<HBox spacing="40">
+				<Pane prefHeight="10.0" prefWidth="40.0"/>
+				<Button fx:id="buyItemYesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+						minWidth="-Infinity" onAction="#storeYesItemPush" prefHeight="43" text="Yes" visible="false"/>
+				<Button fx:id="buyItemNoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+						minWidth="-Infinity" onAction="#storeNoItemPush" prefHeight="43" text="No" visible="false"/>
+			</HBox>
+		</VBox>
+	</AnchorPane>
+
+</AnchorPane>
