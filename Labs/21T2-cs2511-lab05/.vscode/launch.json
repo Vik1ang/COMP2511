@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch GameOfLifeApplication",
+            "request": "launch",
+            "mainClass": "unsw.automata.GameOfLifeApplication",
+            "vmArgs": "--module-path ./lib/symlink_javafx --add-modules javafx.controls,javafx.fxml -enableassertions"
+        }
+    ]
+}

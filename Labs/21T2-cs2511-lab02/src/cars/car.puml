@@ -1,0 +1,65 @@
+@startuml
+abstract class Engine {
+    - int speed
+    - Manufacturer manufacturer
+    + getSpeed()
+}
+
+class ThermalEngine {
+}
+
+class ElectricalEngine {
+}
+
+class NuclearEngine {
+}
+
+class SolarEngine {
+}
+
+abstract class Manufacturer {
+}
+
+class EngineManufacturer {
+}
+
+class Producer {
+    - String brandName
+}
+
+class Car {
+    - List<Engine> engineList
+    - LocalDateTime localTime
+    - boolean canFly
+    + drive(x,y)
+}
+
+class Owner {
+    - String name
+    - String address
+    - List<Car> carList
+}
+
+class Planes{
+    - List<String> passengersList
+    + fly(x,y,z)
+}
+
+class FlyingCar {
+    + fly(x,y,z)
+}
+
+Engine <|-- ThermalEngine
+Engine <|-- ElectricalEngine
+Engine <|-- NuclearEngine
+Engine <|-- SolarEngine
+'Engine <-- EngineManufacturer
+EngineManufacturer "1..*" <-- "0..*" Engine
+Car o-- Engine
+Car o-- Producer
+Car <|-- Planes
+Car <|-- FlyingCar
+Manufacturer <|-- EngineManufacturer
+Manufacturer <|-- Producer
+Owner *-- Car
+@enduml
